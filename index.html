@@ -10,7 +10,7 @@
             max-width: 800px;
             margin: 40px auto;
             padding: 20px;
-            line-height: 1.6;
+            line-height: 1.4;
         }
         h1 {
             color: #003366;
@@ -45,6 +45,15 @@
             margin: 0 15px;
             font-weight: bold;
         }
+        .publication {
+            margin-bottom: 10px;
+        }
+        .publication p {
+            margin: 2px 0;
+        }
+        .publication .indent {
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -52,7 +61,6 @@
         <a href="#about">About</a>
         <a href="#publications">Publications</a>
         <a href="#teaching">Teaching</a>
-        <a href="#contact">Contact</a>
     </div>
     
     <div class="profile">
@@ -60,52 +68,64 @@
         <div>
             <h1>Ganyuan Cao</h1>
             <p><strong>Institution</strong>: EPFL</p>
-            <p><strong>Email</strong>:
+            <p><strong>Email</strong>: 
                 <ul>
-                    <li> <a href="mailto:your.email@domain.com">your.email@domain.com</a> </li>
-                    <li> <a href="mailto:your.email@domain.com">your.email@domain.com</a> </li> 
+                    <li><a href="mailto:ganyuan.cao@epfl.ch">ganyuan.cao@epfl.ch</a></li>
+                    <li><a href="mailto:gycao@proton.me">gycao@proton.me</a></li> 
                 </ul>    
             </p>
         </div>
     </div>
     
     <h2 id="about">About Me</h2>
-    <p>Hello! My name is Ganyuan. You can also call me "Gan". I am a cryptography research. </p>
-    <p>My research interests include 
-        <ul>
-            <li> Provable Security : Game-Based Proofs, Composable Security, Security Abstraction/Formalism... </li>
-            <li> Cryptographic Primitives : Homomorphic Encryption, zkSNARKs, MPC, and their compositions... </li>
-        </ul>
-    </p>
+    <p>Hello! My name is Ganyuan. You can also call me "Gan". I am a cryptography researcher.</p>
+    <p>My research interests include:</p>
+    <ul>
+        <li>Provable Security: Game-Based Proofs, Composable Security, Security Abstraction/Formalism...</li>
+        <li>Cryptographic Primitives: Homomorphic Encryption, zkSNARKs, MPC, and their compositions...</li>
+    </ul>
     
     <h2 id="publications">Publications</h2>
     
     <h3>Theses</h3>
-    <ul>
-        <li><a href="#">Title of Thesis</a>, Institution, Year.</li>
-    </ul>
+    <div class="publication">
+        <p><strong> - <a href="https://eprint.iacr.org/2024/1231">A Composable View of Verifiable Homomorphic Encryption in Multi-Party Setting</a></strong></p>
+        <p class="indent">Ganyuan Cao</p>
+        <p class="indent">Master's Thesis, EPFL, 2025</p>
+        <p class="indent">Supervisors: Prof. Dr. Alessandro Chiesa, Christian Knabenhans, Dr. Sylvain Chatel </p>
+    </div>
 
+    <div class="publication">
+        <p><strong> - <a href="https://eprint.iacr.org/2024/1231">Revisiting and Enhancing SCB mode towards Length-Preserving AEAD</a></strong></p>
+        <p class="indent">Ganyuan Cao</p>
+        <p class="indent">Master's Semester Project, ETH Zurich, 2023</p>
+        <p class="indent">Supervisors: Prof. Dr. Ueli Maurer, Dr. Fabio Banfi </p>
+    </div>
+    
     <h3>Preprints</h3>
-    <ul>
-        <li><a href="#">Title of Preprint</a>, Archive, Year.</li>
-    </ul>
+    <div class="publication">
+        <p><strong> - <a href="https://eprint.iacr.org/2024/1231">A Composable View of Homomorphic Encryption and Authenticator</a></strong></p>
+        <p class="indent">Ganyuan Cao</p>
+        <p class="indent">IACR ePrint, 2024</p>
+    </div>
+
+    <div class="publication">
+        <p><strong> - <a href="https://eprint.iacr.org/2024/598">Decryption Indistinguishability under Chosen Control Flow</a></strong></p>
+        <p class="indent">Ganyuan Cao</p>
+        <p class="indent">IACR ePrint, 2024</p>
+    </div>
     
     <h3>Conference Papers</h3>
-    <ul>
-        <li><a href="#">Title of Conference Paper</a>, Conference, Year.</li>
-    </ul>
-    
-    <h3>Journal Articles</h3>
-    <ul>
-        <li><a href="#">Title of Journal Paper</a>, Journal, Year.</li>
-    </ul>
+    <div class="publication">
+        <p><strong> - <a href="https://ieeexplore.ieee.org/document/8377721">Proof of Contribution: A Modification of Proof of Work to Increase Mining Efficiency</a></strong></p>
+        <p class="indent">Xue, Tengfei, Yuyu Yuan, Zahir Ahmed, Krishna Moniz, Ganyuan Cao, and Cong Wang</p>
+        <p class="indent">IEEE COMPSAC, 2018</p>
+    </div>
     
     
     
     <h2 id="teaching">Teaching</h2>
-    <p>List any courses you have taught or assisted with.</p>
+    <p>TBD. </p>
     
-    <h2 id="contact">Contact</h2>
-    <p>Include office address or any other contact details you wish to share.</p>
 </body>
 </html>
