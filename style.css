@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 950px;
+    margin: 40px auto;
+    padding: 20px;
+    line-height: 1.4;
+}
+
+h1 {
+    color: #003366;
+}
+
+h2 {
+    border-bottom: 2px solid #003366;
+    padding-bottom: 5px;
+}
+
+a {
+    color: #003366;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Navigation */
+
+.nav {
+    background: #f4f4f4;
+    padding: 10px;
+    text-align: center;
+}
+
+.nav a {
+    margin: 0 12px;   /* normal nav spacing */
+    font-weight: bold;
+}
+
+/* Grouped nav item: Teaching & Supervising */
+
+.nav-group {
+    margin: 0 12px;
+}
+
+.nav-group .nav-sub {
+    margin: 0 2px;    /* MUCH tighter spacing */
+}
+
+.nav-sep {
+    margin: 0 2px;
+    font-weight: bold;
+}
+
+/* Profile */
+
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile img {
+    width: 225px;
+    height: 250px;
+    margin-right: 20px;
+}
+
+/* Publications */
+
+.publications {
+    padding-left: 1.4em;
+}
+
+.publication {
+    margin-bottom: 1.2em;
+    padding-left: 1.2em;
+    text-indent: -1.2em; /* hanging indent */
+}
+
+.publication p {
+    margin: 2px 0;
+}
+
+.publication .title {
+    font-weight: bold;
+}
+
+/* Supervising list */
+
+.supervising-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0.5em;
+}
+
+.supervising-list li {
+    margin-bottom: 0.6em;
+    position: relative;
+    padding-left: 1em;
+}
+
+.supervising-list li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+}
+
+.supervising-list p {
+    margin: 1px 0;
+}
