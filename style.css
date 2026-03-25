@@ -108,3 +108,25 @@ a:hover {
 .supervising-list p {
     margin: 1px 0;
 }
+
+.service-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0.25em;
+}
+
+.service-list li {
+    margin-bottom: 0.6em;
+    position: relative;
+    padding-left: 1em;
+}
+
+.service-list li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+}
+
+.service-list p {
+    margin: 1px 0;
+}
