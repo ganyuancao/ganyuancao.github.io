@@ -15,6 +15,17 @@ h2 {
     padding-bottom: 5px;
 }
 
+/* Headings: pull the following text/list up closer */
+
+h3 {
+    margin-bottom: 0.25em;
+}
+
+h3+p {
+    margin-top: 0.25em;
+    margin-bottom: 0.3em;
+}
+
 a {
     color: #003366;
     text-decoration: none;
@@ -90,7 +101,8 @@ a:hover {
 .supervising-list {
     list-style: none;
     padding-left: 0;
-    margin-top: 0.5em;
+    margin-top: 0.25em;
+    margin-bottom: 0.5em;
 }
 
 .supervising-list li {
@@ -113,6 +125,7 @@ a:hover {
     list-style: none;
     padding-left: 0;
     margin-top: 0.25em;
+    margin-bottom: 0.5em;
 }
 
 .service-list li {

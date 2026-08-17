@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ganyuan - Homepage</title>
+    <title>Ganyuan Cao - Homepage</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
+    <!-- ============================== NAVIGATION ============================== -->
     <div class="nav">
         <a href="#about">About</a>
         <a href="#news">News</a>
@@ -20,27 +23,28 @@
         <a href="#services">Community Services</a>
     </div>
 
+    <!-- ============================== PROFILE HEADER ============================== -->
     <div class="profile">
         <img src="profile.jpg" alt="Ganyuan Cao">
         <div>
             <h1>Ganyuan Cao</h1>
-            <p><strong>Contact</strong>:
-                <a href="mailto:ganyuan.cao@telecom-paris.fr">
-                    ganyuan.cao@telecom-paris.fr
-                </a>
+            <p>
+                <strong>Contact</strong>:
+                <a href="mailto:ganyuan.cao@telecom-paris.fr">ganyuan.cao@telecom-paris.fr</a>
             </p>
             <p><strong>Office</strong>: 4C54 at Télécom Paris</p>
         </div>
     </div>
 
+    <!-- ============================== ABOUT ============================== -->
     <h2 id="about">About Me</h2>
+
     <p>Hello! My name is Ganyuan. You can also call me "Gan".</p>
 
     <p>
         I am a doctoral researcher at
         <a href="https://www.telecom-paris.fr/en/research/labs/information-processing-ltci/teams/cybersecurity-cryptography">
-            Télécom Paris
-        </a>
+            Télécom Paris</a>, <a href="https://www.ip-paris.fr"> Institut Polytechnique de Paris </a>
         supervised by Prof. Dr.
         <a href="https://www.telecom-paris.fr/sebastien-canard">Sébastien Canard</a>
         and Dr.
@@ -49,41 +53,106 @@
 
     <p>My research interests include:</p>
     <ul>
-        <li>Provable security with Universal Composability (UC), Game-Based Proofs, with particular interest in Idealized Models e.g., ROM...</li>
-        <li>Secure (multi-party) protocols via compositions of advanced cryptographic primitives (with recent focus on symmetric primitives including oblivious PRF, constrained PRF, and pseudorandom codes (PRC))...</li>
+        <li>
+            Provable security with Universal Composability (UC), Game-Based Proofs,
+            with particular interest in Idealized Models e.g., ROM...
+        </li>
+        <li>
+            Secure (multi-party) protocols via compositions of advanced cryptographic
+            primitives (with recent focus on symmetric primitives including oblivious
+            PRF, constrained PRF, and pseudorandom codes (PRC))...
+        </li>
     </ul>
 
     <p>
-        Check out <a href="https://github.com/ganyuancao/CryptoSearch">CryptoSearch</a>
-        : a tool I made to make finding citation keys in
+        Check out <a href="https://github.com/ganyuancao/CryptoSearch">CryptoSearch</a>:
+        a tool I made to make finding citation keys in
         <a href="https://cryptobib.di.ens.fr">CryptoBib</a> easier :)
     </p>
 
     <p>
-        I snowboard 🏂, practice
-        <a href="https://fr.wikipedia.org/wiki/Aïkido">Aikido</a> 🥋,
-        and play <a href="https://en.wikipedia.org/wiki/Go_(game)">Go</a>.
+        I snowboard 🏂. I practice
+        <a href="https://fr.wikipedia.org/wiki/Aïkido">Aikido</a> 🥋. I do <a href="https://en.wikipedia.org/wiki/Aircraft_spotting">aircraft spotting</a> ✈️.
+        I play <a href="https://en.wikipedia.org/wiki/Go_(game)">Go</a> ⚫⚪.
     </p>
 
+    <p>Feel free to contact :) </p>
+
+    <!-- ============================== NEWS ============================== -->
     <h2 id="news">News</h2>
+
     <ul>
         <li>
             Our work
             <a href="https://eprint.iacr.org/2025/1845">
                 HE-based On-the-Fly MPC, Revisited: Universal Composability,
-                Approximate and Imperfect Computation, Circuit Privacy
-            </a>
-            is accepted as a poster at
-            <a href="https://fhe.org/conferences/conference-2026/">
-                FHE Conference 2026
-            </a>.
+                Approximate and Imperfect Computation, Circuit Privacy</a>
+            is accepted at
+            <a href="https://asiacrypt.iacr.org/2026/">Asiacrypt 2026</a>.
+        </li>
+
+        <li>
+            Our work
+            <a href="https://eprint.iacr.org/2026/1657">
+                Ideal Pseudorandom Code, Revisited</a>
+            is accepted at
+            <a href="https://asiacrypt.iacr.org/2026/">CANS 2026</a>.
         </li>
     </ul>
 
+    <!-- ============================== PUBLICATIONS ============================== -->
     <h2 id="publications">Publications</h2>
 
+    <!-- ---------- Conference / Journal ---------- -->
+    <h3>Conference Paper / Journal</h3>
+    <ol class="publications">
+
+        <li class="publication">
+            <p class="title">
+                HE-based On-the-Fly MPC, Revisited: Universal Composability,
+                Approximate and Imperfect Computation, Circuit Privacy
+            </p>
+            <p>
+                <u>Ganyuan Cao</u>,
+                <a href="https://s-chtl.github.io">Sylvain Chatel</a>,
+                <a href="https://cknabs.github.io">Christian Knabenhans</a>
+            </p>
+            <p> <a href="https://asiacrypt.iacr.org/2026/">Asiacrypt 2026</a> </p>
+            <p>
+                <a href="https://eprint.iacr.org/2025/1845">[ePrint]</a>
+                <a href="poster/UC_for_HE_OtFMPC.pdf">[poster]</a>
+            </p>
+        </li>
+
+        <li class="publication">
+            <p class="title">Ideal Pseudorandom Code, Revisited</p>
+            <p>Ganyuan Cao</p>
+            <p> <a href="https://asiacrypt.iacr.org/2026/">CANS 2026</a> </p>
+            <p>
+                <a href="https://eprint.iacr.org/2026/1657">[ePrint]</a>
+            </p>
+        </li>
+
+        <li class="publication">
+            <p class="title">
+                Proof of Contribution: A Modification of Proof of Work to Increase Mining Efficiency
+            </p>
+            <p>
+                Tengfei Xue, Yuyu Yuan, Zahir Ahmed, Krishna Moniz,
+                <u>Ganyuan Cao</u>, Cong Wang
+            </p>
+            <p>IEEE COMPSAC, 2018</p>
+            <p>
+                <a href="https://ieeexplore.ieee.org/document/8377721">[paper]</a>
+            </p>
+        </li>
+
+    </ol>
+
+    <!-- ---------- Theses ---------- -->
     <h3>Theses</h3>
     <ol class="publications">
+
         <li class="publication">
             <p class="title">
                 A Composable View of Verifiable Homomorphic Encryption in Multi-Party Settings
@@ -91,8 +160,10 @@
             <p>Ganyuan Cao</p>
             <p>Master's Thesis, EPFL, 2025</p>
             <p>
-                Supervisors: Prof. Dr. <a href="https://ic-people.epfl.ch/~achiesa/">Alessandro Chiesa</a>,
-                <a href="https://cknabs.github.io">Christian Knabenhans</a>, Dr. <a href="https://s-chtl.github.io">Sylvain Chatel</a>
+                Supervisors: Prof. Dr.
+                <a href="https://ic-people.epfl.ch/~achiesa/">Alessandro Chiesa</a>,
+                <a href="https://cknabs.github.io">Christian Knabenhans</a>, Dr.
+                <a href="https://s-chtl.github.io">Sylvain Chatel</a>
             </p>
             <p>
                 <a href="pub/UC_for_vFHE.pdf">[paper]</a>
@@ -102,40 +173,36 @@
         </li>
 
         <li class="publication">
-            <p class="title">
-                Revisiting and Enhancing SCB Mode towards Length-Preserving AEAD
-            </p>
+            <p class="title">Revisiting and Enhancing SCB Mode towards Length-Preserving AEAD</p>
             <p>Ganyuan Cao</p>
             <p>Master's Semester Project, ETH Zurich, 2023</p>
             <p>
-                Supervisors: Prof. Dr. Ueli Maurer, Dr. <a href="https://fabiobanfi.com">Fabio Banfi</a>
+                Supervisors: Prof. Dr. Ueli Maurer, Dr.
+                <a href="https://fabiobanfi.com">Fabio Banfi</a>
             </p>
             <p>
                 <a href="pub/SCB_AEAD.pdf">[paper]</a>
                 <a href="bib/SCB_AEAD.bib">[bibtex]</a>
             </p>
         </li>
+
     </ol>
 
+    <!-- ---------- Preprints ---------- -->
     <h3>Preprints</h3>
     <ol class="publications">
-        <li class="publication">
-            <p class="title">
-                HE-based On-the-Fly MPC, Revisited: Universal Composability,
-                Approximate and Imperfect Computation, Circuit Privacy
-            </p>
-            <p><u>Ganyuan Cao</u>, <a href="https://s-chtl.github.io">Sylvain Chatel</a>, <a href="https://cknabs.github.io">Christian Knabenhans</a></p>
-            <p>IACR ePrint, 2025</p>
+
+        <!-- <li class="publication">
+            <p class="title">Decoding Pseudorandom Code Obliviously</p>
+            <p>Ganyuan Cao</p>
+            <p>IACR ePrint, 2026</p>
             <p>
-                <a href="https://eprint.iacr.org/2025/1845">[paper]</a>
-                <a href="poster/UC_for_HE_OtFMPC.pdf">[poster]</a>
+                <a href="TBD">[paper]</a>
             </p>
-        </li>
+        </li> -->
 
         <li class="publication">
-            <p class="title">
-                A Composable View of Homomorphic Encryption and Authenticator
-            </p>
+            <p class="title">A Composable View of Homomorphic Encryption and Authenticator</p>
             <p>Ganyuan Cao</p>
             <p>IACR ePrint, 2024</p>
             <p>
@@ -144,39 +211,24 @@
         </li>
 
         <li class="publication">
-            <p class="title">
-                Decryption Indistinguishability under Chosen Control Flow
-            </p>
+            <p class="title">Decryption Indistinguishability under Chosen Control Flow</p>
             <p>Ganyuan Cao</p>
             <p>IACR ePrint, 2024</p>
             <p>
                 <a href="https://eprint.iacr.org/2024/598">[paper]</a>
             </p>
         </li>
+
     </ol>
 
-    <h3>Conference Papers</h3>
-    <ol class="publications">
-        <li class="publication">
-            <p class="title">
-                Proof of Contribution: A Modification of Proof of Work to Increase Mining Efficiency
-            </p>
-            <p>
-                Xue, Tengfei; Yuyu Yuan; Zahir Ahmed; Krishna Moniz;
-                <u>Ganyuan Cao</u>; Cong Wang
-            </p>
-            <p>IEEE COMPSAC, 2018</p>
-            <p>
-                <a href="https://ieeexplore.ieee.org/document/8377721">[paper]</a>
-            </p>
-        </li>
-    </ol>
-
+    <!-- ============================== TEACHING & SUPERVISING ============================== -->
     <h2 id="teaching">Teaching &amp; Supervising</h2>
 
+    <!-- ---------- Teaching ---------- -->
     <h3>Teaching</h3>
     <p>TBD.</p>
 
+    <!-- ---------- Supervising ---------- -->
     <h3 id="supervising">Supervising</h3>
     <p>I am honored to (co-)supervise the following students:</p>
 
@@ -184,21 +236,25 @@
         <li>
             <p>Antoine Bertail</p>
             <p>[M2 Internship] Provable Security in Quantum Idealized Models</p>
-            <p>Co-supervised with Dr. <a href="https://sites.google.com/view/qingjuwang">Qingju Wang</a> and Jinwei Zheng</p>
-            <p>03.2026 --- </p>
+            <p>
+                Co-supervised with Dr.
+                <a href="https://sites.google.com/view/qingjuwang">Qingju Wang</a>
+                and Jinwei Zheng
+            </p>
+            <p>03.2026 ---</p>
         </li>
     </ul>
 
-
-    
+    <!-- ============================== COMMUNITY SERVICES ============================== -->
     <h2 id="services">Community Services</h2>
 
     <h3>Reviewer</h3>
     <ul class="service-list">
         <li>
-            <p>Crypto 2026, Asiacrypt 2026</p>
+            <p>2026: IACR Crypto, IACR Asiacrypt</p>
         </li>
     </ul>
 
 </body>
+
 </html>
