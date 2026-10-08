@@ -9,38 +9,45 @@
     <link rel="stylesheet" href="../style.css">
     <style>
         .controls {
-            background: #f4f4f4;
-            padding: 10px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 12px;
             display: flex;
             flex-wrap: wrap;
             gap: 8px 18px;
             align-items: center;
+            font-size: 0.95em;
         }
 
         .controls input[type="search"] {
-            flex: 1;
-            min-width: 160px;
-            padding: 4px 6px;
-            font: inherit;
+            flex: 1 1 220px;
+            min-width: 0;
         }
 
+        .controls input[type="search"],
         .controls select {
+            padding: 6px 8px;
             font: inherit;
+            color: var(--text);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
         }
 
         #status {
-            color: #666;
+            color: var(--muted);
             font-size: 0.9em;
         }
 
         .paper {
             display: flex;
             gap: 12px;
-            margin: 0.9em 0;
+            margin: 1.1em 0;
         }
 
         .paper.low {
-            opacity: 0.6;
+            opacity: 0.65;
         }
 
         .score {
@@ -50,18 +57,19 @@
             line-height: 1.7em;
             text-align: center;
             font-weight: bold;
-            color: #fff;
-            background: #003366;
-            border-radius: 3px;
+            color: var(--bg);
+            background: var(--accent);
+            border-radius: 4px;
         }
 
         .low .score {
-            background: #999;
+            background: var(--muted);
         }
 
         .paper .body {
             flex: 1;
             min-width: 0;
+            overflow-wrap: anywhere;
         }
 
         .paper p {
@@ -69,41 +77,51 @@
         }
 
         .paper .title {
-            font-weight: bold;
+            font-weight: 600;
+        }
+
+        .paper .title a {
+            text-decoration: none;
+        }
+
+        .paper .title a:hover {
+            text-decoration: underline;
         }
 
         .new .title::after {
             content: "new";
             margin-left: 6px;
-            padding: 0 4px;
+            padding: 0 5px;
             font-size: 0.75em;
-            color: #fff;
-            background: #b35900;
+            color: var(--bg);
+            background: var(--badge);
             border-radius: 3px;
         }
 
         .meta {
-            color: #666;
+            color: var(--muted);
             font-size: 0.9em;
         }
 
         .hit {
             display: inline-block;
             margin: 2px 4px 0 0;
-            padding: 0 5px;
-            font-size: 0.8em;
-            background: #e6eef6;
+            padding: 0 6px;
+            font-size: 0.85em;
+            color: var(--text);
+            background: var(--chip);
             border-radius: 3px;
         }
 
         .hit.neg {
-            background: #f6e6e6;
+            background: var(--chip-neg);
         }
 
         details summary {
             cursor: pointer;
-            color: #003366;
+            color: var(--accent);
             font-size: 0.9em;
+            padding: 2px 0;
         }
 
         details p {
