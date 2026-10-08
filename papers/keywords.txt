@@ -1,0 +1,76 @@
+# One rule per line:   WEIGHT  REGEX
+# The regex is case-insensitive and searched in "title. abstract". Each rule
+# counts once per paper; the score is the sum of the weights of matching rules.
+# Papers scoring at least THRESHOLD (triage.py, default 3) are shown on the
+# page, the rest only with "show all". Pushing a change reruns the triage.
+#
+# Rule of thumb: 3 = enough on its own, 1 = ambiguous word that needs company,
+# negative = topic to push down.
+
+# --- specific terms: one match is enough
+3   composab
+3   random oracle
+3   \(UC\)
+3   \bOPRF
+3   \bSNARK
+3   \bNIZK
+3   zero-knowledge
+3   oblivious
+3   homomorphic
+3   searchable (symmetric )?encryption
+3   \bMPC\b
+3   multi-?party
+3   \bPSI\b
+3   private set intersection
+3   non-committing
+3   \bVOLE\b
+3   pseudorandom.{0,20}code
+3   \bPRC\b
+3   steganograph
+3   \bLPN\b
+3   learning parity
+3   \bLWE\b
+3   learning with errors
+3   syndrome decoding
+3   code-based
+3   \bCCA\b
+3   \bCPA\b
+3   idealized? (model|cipher|functionalit)
+3   threshold (signature|encryption|cryptograph|scheme|ECDSA|BLS)
+3   adaptive(ly)?[- ](secur|corrupt)
+3   security (proof|reduction|game)
+3   watermark
+3   lattice
+3   quantum
+
+# --- words that are common outside cryptography: need a second match
+1   threshold
+1   program
+1   game
+1   transform
+1   compiler
+1   global
+1   intersection
+1   constrain
+1   simulat
+1   adaptive
+1   corruption
+1   ideal
+
+# --- cryptographic context: lifts an ambiguous word over the threshold
+1   cryptograph
+1   signature scheme
+1   provabl[ye] secur
+1   pseudorandom
+
+# --- push down
+-3  malware
+-3  intrusion detection
+-3  fuzz(ing|er)
+-3  jailbreak
+-3  prompt injection
+-2  federated learning
+-2  smart contract
+-2  phishing
+-2  vulnerabilit
+-2  user study

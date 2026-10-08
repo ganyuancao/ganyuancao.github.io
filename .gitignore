@@ -4,3 +4,5 @@
 *.aux
 *.fls
 *.fdb_latexmk
+# written by papers/triage.py; published on the paper-data branch
+papers/papers.json

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Paper Feed - Ganyuan Cao</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .controls {
+            background: #f4f4f4;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 18px;
+            align-items: center;
+        }
+
+        .controls input[type="search"] {
+            flex: 1;
+            min-width: 160px;
+            padding: 4px 6px;
+            font: inherit;
+        }
+
+        .controls select {
+            font: inherit;
+        }
+
+        #status {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .paper {
+            display: flex;
+            gap: 12px;
+            margin: 0.9em 0;
+        }
+
+        .paper.low {
+            opacity: 0.6;
+        }
+
+        .score {
+            flex: none;
+            width: 2.2em;
+            height: 1.7em;
+            line-height: 1.7em;
+            text-align: center;
+            font-weight: bold;
+            color: #fff;
+            background: #003366;
+            border-radius: 3px;
+        }
+
+        .low .score {
+            background: #999;
+        }
+
+        .paper .body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .paper p {
+            margin: 2px 0;
+        }
+
+        .paper .title {
+            font-weight: bold;
+        }
+
+        .new .title::after {
+            content: "new";
+            margin-left: 6px;
+            padding: 0 4px;
+            font-size: 0.75em;
+            color: #fff;
+            background: #b35900;
+            border-radius: 3px;
+        }
+
+        .meta {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .hit {
+            display: inline-block;
+            margin: 2px 4px 0 0;
+            padding: 0 5px;
+            font-size: 0.8em;
+            background: #e6eef6;
+            border-radius: 3px;
+        }
+
+        .hit.neg {
+            background: #f6e6e6;
+        }
+
+        details summary {
+            cursor: pointer;
+            color: #003366;
+            font-size: 0.9em;
+        }
+
+        details p {
+            margin-top: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="nav">
+        <a href="../">Home</a>
+    </div>
+
+    <h1>Paper Feed</h1>
+    <p id="status">Loading…</p>
+
+    <div class="controls">
+        <input type="search" id="q" placeholder="Search title, authors, abstract">
+        <label>Source
+            <select id="source">
+                <option value="">all</option>
+                <option>arXiv</option>
+                <option>ePrint</option>
+            </select>
+        </label>
+        <label>Order
+            <select id="order">
+                <option value="day">by day, then score</option>
+                <option value="score">by score</option>
+            </select>
+        </label>
+        <label><input type="checkbox" id="all"> show all</label>
+    </div>
+
+    <div id="list"></div>
+
+    <script>
+        // papers.json is written by triage.py; the workflow publishes it on the
+        // paper-data branch so the daily update never touches main.
+        const LOCAL = ["localhost", "127.0.0.1"].includes(location.hostname);
+        const DATA_URL = LOCAL ? "papers.json" :
+            "https://raw.githubusercontent.com/ganyuancao/ganyuancao.github.io/paper-data/papers.json";
+        const SEEN_KEY = "papers.lastVisit";
+
+        const $ = id => document.getElementById(id);
+        let data = null;
+        let lastVisit = "";
+
+        function el(tag, cls, text) {
+            const e = document.createElement(tag);
+            if (cls) e.className = cls;
+            if (text != null) e.textContent = text;
+            return e;
+        }
+
+        function renderPaper(p) {
+            const low = p.score < data.threshold;
+            const row = el("div", "paper" + (low ? " low" : "") +
+                (lastVisit && p.date > lastVisit ? " new" : ""));
+            row.append(el("div", "score", p.score));
+
+            const body = el("div", "body");
+            const title = el("p", "title");
+            const a = el("a", null, p.title);
+            if (/^https:\/\//.test(p.link)) a.href = p.link;
+            a.target = "_blank";
+            a.rel = "noopener";
+            title.append(a);
+            body.append(title);
+            body.append(el("p", null, p.authors));
+
+            const src = p.category ? `${p.source} · ${p.category}` : p.source;
+            const meta = el("p", "meta", `${src} · ${p.date.slice(0, 10)} `);
+            for (const [word, weight] of p.hits)
+                meta.append(el("span", "hit" + (weight < 0 ? " neg" : ""),
+                    `${word} ${weight > 0 ? "+" : ""}${weight}`));
+            body.append(meta);
+
+            const det = el("details");
+            det.append(el("summary", null, "abstract"), el("p", null, p.abstract));
+            body.append(det);
+
+            row.append(body);
+            return row;
+        }
+
+        function render() {
+            const q = $("q").value.trim().toLowerCase();
+            const source = $("source").value;
+            const all = $("all").checked;
+            const shown = data.papers.filter(p =>
+                (all || p.score >= data.threshold) &&
+                (!source || p.source === source) &&
+                (!q || `${p.title} ${p.authors} ${p.abstract}`.toLowerCase().includes(q)));
+
+            const list = $("list");
+            list.replaceChildren();
+            if ($("order").value === "score") {
+                shown.sort((a, b) => b.score - a.score || (a.date < b.date ? 1 : -1));
+                list.append(...shown.map(renderPaper));
+            } else {
+                // papers.json is already sorted by day, then score.
+                let day = "";
+                for (const p of shown) {
+                    if (p.date.slice(0, 10) !== day) {
+                        day = p.date.slice(0, 10);
+                        list.append(el("h2", null, new Date(day).toLocaleDateString(
+                            "en-GB", { weekday: "long", day: "numeric", month: "long", timeZone: "UTC" })));
+                    }
+                    list.append(renderPaper(p));
+                }
+            }
+            if (!shown.length) list.append(el("p", null, "No papers match."));
+
+            const updated = new Date(data.updated).toLocaleString("en-GB",
+                { dateStyle: "medium", timeStyle: "short" });
+            $("status").textContent =
+                `${shown.length} of ${data.papers.length} papers shown · ` +
+                `threshold ${data.threshold} · updated ${updated}` +
+                (data.failed.length ? ` · ${data.failed.join(", ")} failed on the last run` : "");
+        }
+
+        async function load() {
+            try {
+                const r = await fetch(DATA_URL, { cache: "no-cache" });
+                if (!r.ok) throw new Error(`HTTP ${r.status}`);
+                data = await r.json();
+            } catch (ex) {
+                $("status").textContent = `Could not load the paper list (${ex.message}).`;
+                return;
+            }
+            try {
+                lastVisit = localStorage.getItem(SEEN_KEY) || "";
+                localStorage.setItem(SEEN_KEY, data.updated);
+            } catch (ex) { /* private mode: no "new" badges */ }
+            for (const id of ["q", "source", "order", "all"])
+                $(id).addEventListener("input", render);
+            render();
+        }
+
+        load();
+    </script>
+</body>
+
+</html>

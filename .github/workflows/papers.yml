@@ -1,0 +1,54 @@
+name: Paper feed
+
+# Runs papers/triage.py and publishes papers.json as the single commit of the
+# paper-data branch, which papers/index.html reads. main is never touched.
+
+on:
+  schedule:
+    - cron: "17 5 * * *"   # daily, 05:17 UTC
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - papers/triage.py
+      - papers/keywords.txt
+      - .github/workflows/papers.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: paper-feed
+  cancel-in-progress: false
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Get the previous papers.json
+        run: |
+          mkdir -p "$RUNNER_TEMP/out"
+          if git fetch --depth 1 origin paper-data; then
+            git show FETCH_HEAD:papers.json > "$RUNNER_TEMP/previous.json"
+          fi
+
+      - name: Triage
+        run: python papers/triage.py --previous "$RUNNER_TEMP/previous.json" --out "$RUNNER_TEMP/out/papers.json"
+
+      - name: Publish to paper-data
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd "$RUNNER_TEMP/out"
+          git init -q -b paper-data
+          git add papers.json
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "Update papers.json"
+          git push -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" paper-data
