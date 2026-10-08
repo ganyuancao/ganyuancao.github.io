@@ -238,7 +238,7 @@
             if (!shown.length) list.append(el("p", null, "No papers match."));
 
             const updated = new Date(data.updated).toLocaleString("en-GB",
-                { dateStyle: "medium", timeStyle: "short" });
+                { dateStyle: "medium", timeStyle: "short", timeZone: "UTC" }) + " UTC";
             $("status").textContent =
                 `${shown.length} of ${data.papers.length} papers shown · ` +
                 `threshold ${data.threshold} · updated ${updated}` +
