@@ -11,6 +11,10 @@ papers/index.html reads and renders. Run daily by
 --previous is the papers.json of the last run: its papers are kept (and
 rescored with the current rules) until they are older than KEEP_DAYS.
 
+Each paper has two dates: "date" is when it was submitted, "seen" is when a
+run first found it. Both sites list a paper a day or more after submission,
+so the page groups by "seen", the day the paper actually showed up.
+
 Standard library only.
 """
 
@@ -173,6 +177,19 @@ def load_previous(path):
         return []
 
 
+def estimate_seen(paper):
+    """Likely first-seen time of a paper stored before "seen" was recorded.
+
+    arXiv announces at 00:00 UTC what was submitted before 18:00 UTC the day
+    before; ePrint lists a paper the evening after its submission day, which
+    the next morning's run picks up. Weekends are ignored.
+    """
+    submitted = dt.datetime.fromisoformat(paper["date"])
+    late = paper["source"] == "ePrint" or submitted.hour >= 18
+    day = submitted.date() + dt.timedelta(days=2 if late else 1)
+    return day.strftime("%Y-%m-%dT00:00:00Z")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--previous", help="papers.json from the last run")
@@ -180,8 +197,12 @@ def main():
     args = ap.parse_args()
 
     rules = load_rules()
+    now = now_iso()
     papers = {p["id"]: p for p in load_previous(args.previous)}
     known = len(papers)
+    for p in papers.values():
+        if "seen" not in p:
+            p["seen"] = min(estimate_seen(p), now)
 
     # One source being down should not lose the other, or the papers we have.
     failed = []
@@ -192,7 +213,9 @@ def main():
         try:
             got = fetch()
             log(f"{name}: {len(got)} papers")
-            papers.update((p["id"], p) for p in got)
+            for p in got:
+                p["seen"] = papers[p["id"]]["seen"] if p["id"] in papers else now
+                papers[p["id"]] = p
         except Exception as ex:
             log(f"{name} failed: {ex}")
             failed.append(name)
@@ -204,10 +227,10 @@ def main():
     kept = [p for p in papers.values() if p["date"] >= cutoff]
     for p in kept:
         p["score"], p["hits"] = score_paper(p, rules)
-    kept.sort(key=lambda p: (p["date"][:10], p["score"], p["date"]), reverse=True)
+    kept.sort(key=lambda p: (p["seen"][:10], p["score"], p["date"]), reverse=True)
 
     with open(args.out, "w", encoding="utf-8") as f:
-        json.dump({"updated": now_iso(), "threshold": THRESHOLD,
+        json.dump({"updated": now, "threshold": THRESHOLD,
                    "failed": failed, "papers": kept},
                   f, ensure_ascii=False, separators=(",", ":"))
     passed = sum(1 for p in kept if p["score"] >= THRESHOLD)
