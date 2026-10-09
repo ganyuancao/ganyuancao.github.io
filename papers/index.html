@@ -181,7 +181,7 @@
         function renderPaper(p) {
             const low = p.score < data.threshold;
             const row = el("div", "paper" + (low ? " low" : "") +
-                (lastVisit && p.date > lastVisit ? " new" : ""));
+                (lastVisit && p.seen > lastVisit ? " new" : ""));
             row.append(el("div", "score", p.score));
 
             const body = el("div", "body");
@@ -195,7 +195,7 @@
             body.append(el("p", null, p.authors));
 
             const src = p.category ? `${p.source} · ${p.category}` : p.source;
-            const meta = el("p", "meta", `${src} · ${p.date.slice(0, 10)} `);
+            const meta = el("p", "meta", `${src} · submitted ${p.date.slice(0, 10)} `);
             for (const [word, weight] of p.hits)
                 meta.append(el("span", "hit" + (weight < 0 ? " neg" : ""),
                     `${word} ${weight > 0 ? "+" : ""}${weight}`));
@@ -221,15 +221,16 @@
             const list = $("list");
             list.replaceChildren();
             if ($("order").value === "score") {
-                shown.sort((a, b) => b.score - a.score || (a.date < b.date ? 1 : -1));
+                shown.sort((a, b) => b.score - a.score || (a.seen < b.seen ? 1 : -1));
                 list.append(...shown.map(renderPaper));
             } else {
-                // papers.json is already sorted by day, then score.
+                // papers.json is already sorted by the day a paper was first
+                // seen (UTC), then score.
                 let day = "";
                 for (const p of shown) {
-                    if (p.date.slice(0, 10) !== day) {
-                        day = p.date.slice(0, 10);
-                        list.append(el("h2", null, new Date(day).toLocaleDateString(
+                    if (p.seen.slice(0, 10) !== day) {
+                        day = p.seen.slice(0, 10);
+                        list.append(el("h2", null, "Received " + new Date(day).toLocaleDateString(
                             "en-GB", { weekday: "long", day: "numeric", month: "long", timeZone: "UTC" })));
                     }
                     list.append(renderPaper(p));
