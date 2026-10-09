@@ -5,7 +5,7 @@ name: Paper feed
 
 on:
   schedule:
-    - cron: "0 9 * * *"   # daily, 09:00 UTC
+    - cron: "0 7 * * *"   # daily, 07:00 UTC
   workflow_dispatch:
   push:
     branches: [main]
