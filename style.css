@@ -190,11 +190,11 @@ li {
     color: var(--text);
 }
 
-/* My own name in an author list: links are underlined, so mark it by weight */
+/* My own name in an author list: links are underlined and titles are bold,
+   so mark it by colour, darker than the grey around it */
 
 .publication u {
     text-decoration: none;
-    font-weight: 600;
     color: var(--text);
 }
 
