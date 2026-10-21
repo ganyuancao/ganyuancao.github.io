@@ -190,6 +190,21 @@ li {
     color: var(--text);
 }
 
+/* Collapsible abstract under a publication */
+
+.publication .abstract summary {
+    cursor: pointer;
+    width: fit-content;
+    font-size: 0.9em;
+    color: var(--accent);
+}
+
+.publication .abstract p {
+    margin: 0.5em 0;
+    font-size: 0.95em;
+    line-height: 1.55;
+}
+
 /* My own name in an author list: links are underlined and titles are bold,
    so mark it by colour, darker than the grey around it */
 

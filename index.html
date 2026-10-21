@@ -138,6 +138,12 @@
                 <a href="https://eprint.iacr.org/2025/1845">[ePrint]</a>
                 <a href="poster/UC_for_HE_OtFMPC.pdf">[poster]</a>
             </p>
+            <details class="abstract">
+                <summary>abstract</summary>
+                <p>On-the-fly multi-party computation (OtF-MPC, López-Alt, Tromer, and Vaikuntanathan, STOC 2012) allows clients to join a computation dynamically without remaining online, while outsourcing the computation to an untrusted but powerful server. Existing OtF-MPC constructions rely on composing multi-party homomorphic encryption with zero-knowledge or succinct arguments. While both components have seen substantial efficiency and expressivity improvements in recent years, the security of their composition has not been revisited under these modern refinements.</p>
+                <p>In this work, we revisit OtF-MPC through the lens of composable security. We extend the original analysis to systematically capture recent advances in these two building blocks, and to reason about their secure composition. We focus on multi-group homomorphic encryption (MGHE), a unifying abstraction that generalizes threshold and multi-key HE, and emerges as the natural backbone for OtF-MPC.</p>
+                <p>Our contributions are fourfold. (1) We introduce the first Universal Composability (UC) ideal functionality for MGHE, jointly modeling client and server privacy, approximate or imperfect computation, and threshold security. (2) We define fine-grained security notions for MGHE and show that they are sufficient to realize this functionality against semi-malicious adversaries. (3) We revisit generic compilers that combine MGHE with any-simulation-extractable zkSNARKs, and prove that they realize OtF-MPC against fully malicious adversaries. (4) We introduce a split-witness ideal functionality for NIZKs, which separates the witness component that must be supplied by the ideal adversary from an existential component that only needs to be certified. We show that a Naor–Yung-style composition of MGHE and split-witness NIZKs realizes OtF-MPC while avoiding full extraction from the NIZK</p>
+            </details>
         </li>
 
         <li class="publication">
@@ -147,6 +153,13 @@
             <p>
                 <a href="https://eprint.iacr.org/2026/1657">[ePrint]</a>
             </p>
+            <details class="abstract">
+                <summary>abstract</summary>
+                <p>Pseudorandom error-correcting codes (PRCs), introduced by Christ and Gunn at CRYPTO’24, combine pseudorandomness with error correction, providing a natural abstraction for robust watermarking and steganography on generative AI models. Subsequent standalone notions, which are ideal security for secret-key PRCs and CCA-style security for public-key PRCs, are oracle-based and do not capture composable use with explicit parties, sessions, and corruption.</p>
+                <p>We give a UC treatment of PRCs via corruption-aware ideal functionalities for both settings. Under non-adaptive corruption, the UC notions recover the standalone ones. Under adaptive corruption, we identify a common obstruction: dummy codewords sampled before corruption, together with their neighborhoods, must later be opened as valid PRC codewords. We formalize this as a decoder-non-committing code (NC-PRC), which any adaptively UC-secure realization must induce. We then capture failures of such openings via targeted low opening capacity, show it rules out robust NC-PRCs, and prove that LDPC-based PRCs have this property hence do not admit a NC-PRC.</p>
+                <p>On the positive side, we sketch two compilers to lift error-correcting codes to admit NC-PRCs: a secret-key one from a puncturable PRF and indistinguishability obfuscation (iO), and a public-key one from a smooth projective hash function (SPHF), both evading the barrier via programmable acceptance.</p>
+                <p>Finally, we identify a fresh-codeword explanation barrier for public-key PRCs: accepted unseen codewords cannot be explained from public information without violating pseudorandomness, hence public-key UC realizations require a trapdoor or an idealized setup, and PRC-based watermark detection is inherently designated-verifier.</p>
+            </details>
         </li>
 
         <li class="publication">
@@ -186,6 +199,15 @@
                 <a href="slides/UC_for_vFHE.pdf">[slides]</a>
                 <a href="bib/UC_for_vFHE.bib">[bibtex]</a>
             </p>
+            <details class="abstract">
+                <summary>abstract</summary>
+                <p>Homomorphic Encryption (HE) is a powerful cryptographic tool that enables computations on encrypted data, with the resulting ciphertexts reflecting the same operations as if they were executed on plaintexts. Notably, HE has been extended to a multi-party setting to facilitate collaborative computation on encrypted inputs from multiple sources. This capability is particularly valuable in fields such as cloud computing and privacy-preserving machine learning since it naturally serves as a secure multiparty computation (MPC), which guarantees the confidentiality of inputs from users.</p>
+                <p>However, while HE effectively preserves privacy, it does not inherently ensure the integrity of the inputs from users and the computed results. Guaranteeing this is vital for real-world applications that necessitate both confidentiality and integrity.</p>
+                <p>Establishing a security model for HE presents challenges due to its novel nature and the complexity of its use cases. Achieving integrity alongside confidentiality requires the integration of HE with other cryptographic tools, such as (Zero-Knowledge) Succinct Non-Interactive Arguments of Knowledge (zkSNARKs). Traditional game-based security models often struggle to encapsulate the intricate interactions that arise from such compositions, especially in the multi-party setting.</p>
+                <p>In this thesis, we revisit the security properties of HE in a multi-party setting by introducing new game-based security notions. From the perspective of composable security, we analyze the conditions for realizing an ideal functionality of HE in multi-party settings in the Universal Composability (UC) framework by establishing a reduction from the UC functionality to our proposed game-based notions.</p>
+                <p>We then extend this functionality by composing it with zkSNARKs to provide integrity through verifiable computation. We prove that this composition realizes an on-the-fly MPC system introduced by López-Alt et al. at STOC’13, which leverages an untrusted yet powerful server to assist computations over inputs from dynamically joining parties. We prove security against a malicious adversary capable of statically corrupting a subset of clients and the server. Our analysis addresses both confidentiality and integrity from the perspectives of clients and the server: client inputs remain private and non-malleable, while the server’s circuits are kept confidential, and the correctness of evaluations is verifiable.</p>
+                <p>In this thesis, we provide a dual-perspective analysis of composable security for HE in a multi-party setting, focusing on both the secure realization of the primitive and its security when composed with other cryptographic building blocks in a larger system.</p>
+            </details>
         </li>
 
         <li class="publication">
@@ -200,6 +222,11 @@
                 <a href="pub/SCB_AEAD.pdf">[paper]</a>
                 <a href="bib/SCB_AEAD.bib">[bibtex]</a>
             </p>
+            <details class="abstract">
+                <summary>abstract</summary>
+                <p>Secure Code Book (SCB) mode of operation, proposed by Banfi, is the first length-preserving encryption (LPE) scheme that achieves semantic (IND-CPA) security. SCB mode can be considered as a variant of ECB mode but resolving the problem of block repetition in ECB by constructing repetition signals that include repetition counter and the hash of the corresponding message block. In contrast to prior constructions, SCB mode trades for stronger security at the cost of imperfect correctness, thereby prompting the study on the trade-off between security and correctness in a symmetric encryption scheme.</p>
+                <p>This work re-evaluates the security and correctness of the SCB mode. We present a proof of security under a relaxed assumption that each block is not repeated for more than 2<sup>σ</sup> times (where σ denotes the security parameter), showing that semantic security is still achievable with smaller security parameter. We also prove the correctness of the scheme taking counter values into consideration during the decryption, which leads to a better correctness. To enhance the correctness of SCB mode in case of ciphertext reordering, we introduce the sliding windows technique, enabling dynamic updates of the valid counter range. Furthermore, we follow the Encode-then-Encipher paradigm to extend the SCB mode to a length-preserving AEAD scheme under the assumption that there is at least one repeated block. Our construction serves a preliminary attempt towards length-preserving AEAD.</p>
+            </details>
         </li>
 
     </ol>
@@ -224,6 +251,14 @@
             <p>
                 <a href="https://eprint.iacr.org/2024/1231">[paper]</a>
             </p>
+            <details class="abstract">
+                <summary>abstract</summary>
+                <p>Homomorphic Encryption (HE) is a cutting-edge cryptographic technique that enables computations on encrypted data to be mirrored on the original data. This has quickly attracted substantial interest from the research community due to its extensive practical applications, such as in cloud computing and privacy-preserving machine learning.</p>
+                <p>In addition to confidentiality, the importance of authenticity has emerged to ensure data integrity during transmission and evaluation. To address authenticity, various primitives have been developed including Homomorphic Authenticator (HA). Corresponding security notions have also been introduced by extending the existing notions to their homomorphic versions.</p>
+                <p>Despite these advancements, formalizing the security of HE and HA remains challenging due to the novelty of these primitives and complexity of application scenarios involving message evaluation. It is inclusive which definitions in this zoo of notions are insufficient or overly complex. Moreover, HE and HA are designed to be combined to construct a secure communication channel that ensures both confidentiality and authenticity. However, the security of such compositions is not always clear when game-based notions are used to formalize security.</p>
+                <p>To bridge this gap, we conduct a constructive analysis through the lens of composable security. This method enables us to examine the security properties of each primitive in isolation and to more effectively evaluate their security when integrated into a larger system. We introduce the concepts of a confidential channel and an authenticated channel to specify the security requirements for HE and HA, respectively. We make a comparison with existing game-based notions to determine whether they adequately capture the intended security objectives.</p>
+                <p>We then analyze whether the composition of HE and HA constructs a Homomorphic Authenticated Encryption (HAE) that provides both confidentiality and authenticity in presence of message evaluation. Specifically, we examine a serial composition of HE and HA, corresponding to Encrypt-then-MAC (EtM) composition for constructing classical AE.</p>
+            </details>
         </li>
 
         <li class="publication">
@@ -233,6 +268,10 @@
             <p>
                 <a href="https://eprint.iacr.org/2024/598">[paper]</a>
             </p>
+            <details class="abstract">
+                <summary>abstract</summary>
+                <p>Security proofs for cryptographic primitives typically assume operations are executed in the correct sequence; however, insecure implementations or software-level attacks can disrupt control flows, potentially invalidating these guarantees. To address this issue, we introduce a new security notion, IND-CFA, which formalizes decryption security in the presence of adversarially controlled execution flows. Using this notion, we investigate the control flows under which a cryptographic scheme remains secure, providing insights into secure implementation practices. We revisit the Encrypt-then-MAC paradigm, underscoring the crucial role of operation sequencing in ensuring the security of authenticated encryption schemes built using this method. Additionally, we provide a detailed analysis of the Encode-then-Encipher (EtE) paradigm, a widely adopted approach for constructing robust AE schemes, revealing its vulnerability to adversarial control flows that can enable attackers to infer low-entropy values in the presence of multiple failure conditions.</p>
+            </details>
         </li>
 
     </ol>
