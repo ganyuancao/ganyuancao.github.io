@@ -144,6 +144,28 @@ li {
     color: var(--accent);
 }
 
+/* Institution logos inline in text, like "at [logo] Télécom Paris" */
+
+.inst-logo {
+    height: 1.15em;
+    vertical-align: -0.22em;
+    margin-right: 0.25em;
+}
+
+/* A wordmark stands in for the name, so it sits on the baseline like text */
+.inst-logo--wordmark {
+    height: 0.75em;
+    vertical-align: 0;
+    margin-right: 0;
+}
+
+/* The ETH wordmark is black: lighten it on a dark background */
+@media (prefers-color-scheme: dark) {
+    .inst-logo--eth {
+        filter: invert(1);
+    }
+}
+
 /* Profile */
 
 .profile {
