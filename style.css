@@ -213,6 +213,13 @@ li {
     color: var(--text);
 }
 
+/* Note after an author list, e.g. "(alphabetical order)" */
+
+.publication .author-order {
+    font-size: 0.85em;
+    font-style: italic;
+}
+
 /* Supervising list */
 
 .supervising-list {
