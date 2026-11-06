@@ -159,9 +159,16 @@ li {
     margin-right: 0;
 }
 
-/* The ETH wordmark is black: lighten it on a dark background */
+/* An icon after a word, like an emoji: no gap before the punctuation */
+.inst-logo--after {
+    margin-right: 0;
+}
+
+/* The ETH wordmark and IP Paris emblem are black: lighten them on a dark
+   background */
 @media (prefers-color-scheme: dark) {
-    .inst-logo--eth {
+    .inst-logo--eth,
+    .inst-logo--ipp {
         filter: invert(1);
     }
 }
