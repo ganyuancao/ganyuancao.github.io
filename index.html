@@ -249,6 +249,22 @@
     <h3>Preprints</h3>
     <ol class="publications">
 
+        <li class="publication">
+            <p class="title">Limits of Pseudorandom Codes under Adaptive Corruption</p>
+            <p>Ganyuan Cao</p>
+            <p>IACR ePrint, 2026</p>
+            <p>
+                <a href="https://eprint.iacr.org/2026/2882">[paper]</a>
+            </p>
+            <details class="abstract">
+                <summary>abstract</summary>
+                <p>Pseudorandom codes (PRCs) hide messages in strings that look uniformly random to anyone without the decoder key. If the key may be stolen after some codewords have been sent, security requires that these codewords and the stolen key be indistinguishable from uniform strings, chosen independently of the messages, together with a key that decodes each of them to its message. Since such a string carries no information about its message, the key must store the link. We ask how many key bits this takes.</p>
+                <p>We first isolate an information-theoretic object, <em><i>q</i>-use codes</em>, whose key and <i>q</i> codewords are generated together and whose codewords are perfectly uniform. We show that every adaptively secure PRC yields a <i>q</i>-use code with the same key length, namely its opened key together with the uniform strings it opens. Lower bounds on the key length of <i>q</i>-use codes therefore apply to every adaptively secure PRC, and they hold unconditionally, since their proofs involve no hardness assumption.</p>
+                <p>We then show that every opening costs key bits beyond the length of the opened message. Without errors, the key needs ω(log λ) extra bits to decode the codeword itself; under random noise of correlation ρ, it needs (1/ρ<sup>2</sup>)·ω(log λ) extra bits to decode most noisy copies; and if every error pattern up to a constant fraction of the length must be corrected, it needs, for every alphabet, a constant fraction of the codeword, which we call the robustness tax. Hence, as for non-committing encryption, adaptively secure PRCs need an a-priori bound on the number of openings, but each opening costs more. For non-committing encryption, the cost is the message length, whereas for PRCs, soundness and robustness add a cost on top. We give simple stateful codes that meet these bounds, showing that they are essentially tight, and turn them into stateful PRCs with perfect bounded adaptive security.</p>
+                <p>We finally show that, unlike for non-committing encryption, a programmable random oracle cannot pay this cost under noise. Errors move the decoder's queries away from any reprogrammed point, so for decoders with non-adaptive random oracle queries, every opening must still be paid for in key bits or in reprogrammed points that the decoder reads on a noticeable fraction of inputs. The random oracle thus only relocates the cost.</p>
+            </details>
+        </li>
+
         <!-- <li class="publication">
             <p class="title">Decoding Pseudorandom Code Obliviously</p>
             <p>Ganyuan Cao</p>
